@@ -910,6 +910,14 @@ class Consul(object):
                 return self.agent.http.put(
                     CB.bool(), '/v1/agent/service/deregister/%s' % service_id)
 
+            def get(self, service_id):
+                """
+                Used to retrieve the configuration of a service from the local
+                agent.
+                """
+                return self.agent.http.get(
+                    CB.json(), '/v1/agent/service/{0}'.format(service_id))
+
             def maintenance(self, service_id, enable, reason=None):
                 """
                 The service maintenance endpoint allows placing a given service
